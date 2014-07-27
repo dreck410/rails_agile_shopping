@@ -17,7 +17,7 @@ class ProductTest < ActiveSupport::TestCase
 
   test "titles must not repeat" do
   	product = Product.new(
-  		title: products(:cat_food).title,
+  		title:       products(:cat_food).title,
   		description: "ZZZ",
   		image_url:   "thing.png",
   		price:       8.99)
