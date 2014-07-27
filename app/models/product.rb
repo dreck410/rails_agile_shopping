@@ -8,4 +8,8 @@ class Product < ActiveRecord::Base
   		message: 'Must be a gif, png, jpg, jpeg, or bmp image.'
   }
 
+  def self.latest
+  	Product.order(:updated_at).last
+  end
+  
 end
