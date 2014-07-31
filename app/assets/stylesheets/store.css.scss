@@ -9,6 +9,7 @@
 		font: 150% sans-serif;
 		color: #256;
 		border-bottom: 3px dottod #77d;
+
 	}
 
 	.entry{
@@ -52,4 +53,13 @@
 
 	}
 
+}
+
+
+.entry.odd {
+	background: #9c9;
+}
+
+.entry.even {
+	background: #282;
 }

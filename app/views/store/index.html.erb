@@ -6,7 +6,7 @@
 <% cache ['store', Product.latest] do %>
 	<% @products.each do |product| %>
 		<% cache ['entry', product] do %>
-			<div class='entry'>
+			<div class="<%= cycle('entry odd', 'entry even') %>">
 			<%= image_tag(product.image_url) %>
 			<h3><%= product.title %></h3>
 			<%= sanitize(product.description) %>
