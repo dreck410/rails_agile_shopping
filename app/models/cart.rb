@@ -14,12 +14,14 @@ class Cart < ActiveRecord::Base
 	end
 
 	def remove_product(line_item)
-		if line_item.quantity == 1
-			line_item.destroy
+		current_item = line_items.find_by(product_id: line_item.product_id)
+		if current_item.quantity == 1
+			current_item.destroy
 		elsif line_item.quantity > 1
-			line_item.quantity -= 1
+			current_item.quantity -= 1
+			current_item.save!
 		end
-		#binding.pry
+
 	end
 
 	def total_price

@@ -21,10 +21,27 @@ class LineItemsControllerTest < ActionController::TestCase
       post :create, product_id: products(:cat_food).id
     end
 
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_path
   end
 
-  test "should show line_item" do
+  test "should create line item via ajax" do
+    assert_difference('LineItem.count') do
+      xhr :post, :create, product_id: products(:cat_food).id
+  end
+    assert_response :success
+    assert_select_jquery :html, '#cart' do
+      assert_select 'tr#current_item td', /Cat Food/
+    end
+  end
+
+  test "markup needed foor store.js.coffee is in place" do
+    get :index
+    assert_select '.store .entry > img', 3
+    assert_select '.entry input[type=submit]', 3
+  end
+
+
+  test "should show line item" do
     get :show, id: @line_item
     assert_response :success
   end
@@ -39,11 +56,11 @@ class LineItemsControllerTest < ActionController::TestCase
     assert_redirected_to line_item_path(assigns(:line_item))
   end
 
-  test "should destroy line_item" do
+  test "should destroy line item" do
     assert_difference('LineItem.count', -1) do
       delete :destroy, id: @line_item
     end
 
-    assert_redirected_to line_items_path
+    assert_redirected_to @line_item.cart
   end
 end
