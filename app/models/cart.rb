@@ -19,9 +19,8 @@ class Cart < ActiveRecord::Base
 			current_item.destroy
 		elsif line_item.quantity > 1
 			current_item.quantity -= 1
-			current_item.save!
 		end
-
+		current_item.save!
 	end
 
 	def total_price

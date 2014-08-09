@@ -1,13 +1,11 @@
-<h2>Cart of things you love</h2>
+<h2 id='carttitle'>Cart of things you love</h2>
 <ul>
 <table>
 	<%= render(cart.line_items) %>
 	
 	<tr class='total_line'>
 		<td colspan="2">Total</td>
-		<td class="total_cell">
-			<%= number_to_currency(cart.total_price) %>
-		</td>
+		<td class="total_cell"><%= number_to_currency(cart.total_price) %></td>
 	</tr>
 </table>
 
